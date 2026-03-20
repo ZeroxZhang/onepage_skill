@@ -1,0 +1,195 @@
+<div align="center">
+  <a href="#english">English</a> | <a href="#简体中文">简体中文</a>
+</div>
+
+---
+
+<h1 id="english">OnePage Generator</h1>
+
+> A Claude Agent Skill for converting text content into high-quality OnePage infographics.
+
+![OnePage Generator Demo](./readme_onepage.png)
+
+## Overview
+
+OnePage Generator is a Claude Agent Skill that transforms your provided text, Markdown, or PDF content into beautiful OnePage infographics (single-page visual posters) through a progressive interactive workflow.
+
+### Use Cases
+
+- Product feature introductions
+- Strategy / methodology presentations
+- Infographic creation
+- Data visualization overviews
+- One-page team/project reports
+
+### Core Features
+
+- **Multiple Sizes**: Vertical scroll (Mobile), Horizontal widescreen (16:9), Square (1:1)
+- **Four Design Styles**: Cyber/Tech, Modern Business, Fresh/Nature, Neumorphism/Clay
+- **Three Information Densities**: Low/Medium/High density, automatically rewriting content to match the layout
+- **Smart Diagram Matching**: Automatically selects flowcharts, structure diagrams, architecture diagrams, etc., based on content logic
+- **Chinese Typography Optimization**: Matches the best Chinese font scheme based on the design style
+- **HTML → PNG Conversion**: Built-in Playwright screenshot script to automatically convert to high-resolution images
+
+## Installation
+
+### Method 1: Upload on Claude.ai
+
+1. Compress the `onepage-generator/` folder into a ZIP file.
+2. Open Claude.ai → Settings → Customization → Skills.
+3. Click "+" → Upload the ZIP file.
+
+### Method 2: Project Integration (Claude Code / Trae)
+
+Copy the folder to your project's `.claude/skills/` or `.trae/skills/` directory:
+
+```bash
+cp -r onepage-generator/ .trae/skills/onepage-generator/
+```
+
+### Method 3: Global Installation
+
+```bash
+cp -r onepage-generator/ ~/.trae/skills/onepage-generator/
+```
+
+## Usage
+
+Simply describe your request to the AI to trigger it automatically, for example:
+
+- "Help me make an infographic out of this product description"
+- "Generate a OnePage from this Markdown"
+- "Turn this text into a long image suitable for mobile reading"
+
+Or use the slash command to call it explicitly: `/onepage-generator`
+
+## File Structure
+
+```text
+onepage-generator/
+├── SKILL.md                  # Core instructions (Entry point for the Agent)
+├── scripts/
+│   ├── capture.py            # Playwright HTML→PNG screenshot script
+│   └── install_deps.sh       # Dependency installation helper script
+├── references/
+│   ├── design-styles.md      # Full visual specifications for the 4 design styles
+│   ├── typography.md         # Chinese font schemes and typography parameters
+│   ├── layout-specs.md       # Layout specifications for the 3 sizes
+│   ├── diagram-guide.md      # Diagram type matching and drawing guide
+│   └── density-guide.md      # Information density and content rewriting rules
+├── assets/
+│   └── templates/
+│       └── base-skeleton.html# HTML base skeleton template
+├── LICENSE.txt
+└── README.md
+```
+
+## Dependencies
+
+The screenshot feature requires the following dependencies (Optional, Agent will install them automatically when needed):
+
+- Python 3.8+
+- Playwright (`pip install playwright`)
+- Chromium (`python -m playwright install chromium`)
+
+If the runtime environment does not support screenshot tools, the Skill will directly deliver the HTML file.
+
+## License
+
+Apache License 2.0
+
+---
+
+<h1 id="简体中文">OnePage Generator</h1>
+
+> 将文字内容转化为高品质 OnePage 介绍图的 Agent Skill。
+
+![OnePage Generator Demo](./readme_onepage.png)
+
+## 功能概述
+
+OnePage Generator 是一个 Agent Skill，能够将用户提供的文字、Markdown 或 PDF 内容，通过渐进式交互流程，转化为精美的 OnePage 信息图（单页可视化海报）。
+
+### 适用场景
+
+- 产品功能介绍
+- 策略/方法论展示
+- 信息图表制作
+- 数据可视化概览
+- 团队/项目一页纸汇报
+
+### 核心特性
+
+- **多尺寸支持**：纵向长图、横向宽图 (16:9)、正方形 (1:1)
+- **四种设计风格**：科技极客、现代商务、清新自然、新拟态质感
+- **三级信息密度**：低/中/高密度，自动改写内容匹配版式
+- **智能图表匹配**：根据内容逻辑自动选择流程图、结构图、架构图等
+- **中文字体优化**：根据设计风格匹配最佳中文字体方案
+- **HTML → PNG 转换**：自带 Playwright 截图脚本，自动转为高清图片
+
+## 安装方式
+
+### 方式一：Claude.ai 上传
+
+1. 将 `onepage-generator/` 文件夹压缩为 ZIP 文件
+2. 打开 Claude.ai → 设置 → 自定义 → Skills
+3. 点击 "+" → 上传 ZIP 文件
+
+### 方式二：项目集成 (Claude Code / Trae)
+
+将文件夹复制到项目的 `.claude/skills/` 或 `.trae/skills/` 目录下：
+
+```bash
+cp -r onepage-generator/ .trae/skills/onepage-generator/
+```
+
+### 方式三：个人全局安装
+
+```bash
+cp -r onepage-generator/ ~/.trae/skills/onepage-generator/
+```
+
+## 使用方式
+
+直接向 AI 描述你的需求即可自动触发，例如：
+
+- "帮我把这段产品介绍做成一张信息图"
+- "用这份 Markdown 生成一个 OnePage"
+- "把这段文字做成一张适合手机阅读的长图"
+
+或使用特定的唤醒词/斜杠命令显式调用：`/onepage-generator`
+
+## 文件结构说明
+
+```text
+onepage-generator/
+├── SKILL.md                  # 核心指令（Agent 读取的入口）
+├── scripts/
+│   ├── capture.py            # Playwright HTML→PNG 截图脚本
+│   └── install_deps.sh       # 依赖安装辅助脚本
+├── references/
+│   ├── design-styles.md      # 四种设计风格的完整视觉规范
+│   ├── typography.md         # 中文字体方案与排版参数
+│   ├── layout-specs.md       # 三种尺寸的版式规范
+│   ├── diagram-guide.md      # 图表类型匹配与绘制指南
+│   └── density-guide.md      # 信息密度与内容改写规则
+├── assets/
+│   └── templates/
+│       └── base-skeleton.html  # HTML 基础骨架模板
+├── LICENSE.txt
+└── README.md
+```
+
+## 依赖
+
+截图功能需要以下依赖（可选，Agent 会在需要时自动安装）：
+
+- Python 3.8+
+- Playwright (`pip install playwright`)
+- Chromium (`python -m playwright install chromium`)
+
+如果运行环境不支持截图工具，Skill 会直接交付 HTML 文件。
+
+## 许可证
+
+Apache License 2.0
