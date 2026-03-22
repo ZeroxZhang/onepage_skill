@@ -28,6 +28,7 @@ Onepager is a Claude Agent Skill that transforms your provided text, Markdown, o
 - **Six Design Styles**: Cyber/Tech, Modern Business, Fresh/Nature, Neumorphism/Clay, Modern Memphis, Modern Soft UI
 - **Three Information Densities**: Low/Medium/High density, automatically rewriting content to match the layout
 - **Smart Diagram Matching**: Automatically selects flowcharts, structure diagrams, architecture diagrams, etc., based on content logic
+- **Enhanced Layout Engine**: Automatically handles complex layouts, Flex/Grid adaptations, and alignment optimization
 - **Chinese Typography Optimization**: Matches the best Chinese font scheme based on the design style
 - **HTML → PNG Conversion**: Built-in Playwright screenshot script to automatically convert to high-resolution images
 
@@ -124,6 +125,7 @@ Onepager 是一个 Agent Skill，能够将用户提供的文字、Markdown 或 P
 - **六种设计风格**：科技极客、现代商务、清新自然、新拟态质感、现代孟菲斯、现代软UI
 - **三级信息密度**：低/中/高密度，自动改写内容匹配版式
 - **智能图表匹配**：根据内容逻辑自动选择流程图、结构图、架构图等
+- **排版引擎强化**：自动处理复杂布局、Flex/Grid 适配、对齐优化
 - **中文字体优化**：根据设计风格匹配最佳中文字体方案
 - **HTML → PNG 转换**：自带 Playwright 截图脚本，自动转为高清图片
 
