@@ -25,7 +25,7 @@ Onepager is a Claude Agent Skill that transforms your provided text, Markdown, o
 ### Core Features
 
 - **Multiple Sizes**: Vertical scroll (Mobile), Horizontal widescreen (16:9), Square (1:1)
-- **Four Design Styles**: Cyber/Tech, Modern Business, Fresh/Nature, Neumorphism/Clay
+- **Six Design Styles**: Cyber/Tech, Modern Business, Fresh/Nature, Neumorphism/Clay, Modern Memphis, Modern Soft UI
 - **Three Information Densities**: Low/Medium/High density, automatically rewriting content to match the layout
 - **Smart Diagram Matching**: Automatically selects flowcharts, structure diagrams, architecture diagrams, etc., based on content logic
 - **Chinese Typography Optimization**: Matches the best Chinese font scheme based on the design style
@@ -72,7 +72,7 @@ onepager/
 │   ├── capture.py            # Playwright HTML→PNG screenshot script
 │   └── install_deps.sh       # Dependency installation helper script
 ├── references/
-│   ├── design-styles.md      # Full visual specifications for the 4 design styles
+│   ├── design-styles.md      # Full visual specifications for the 6 design styles
 │   ├── typography.md         # Chinese font schemes and typography parameters
 │   ├── layout-specs.md       # Layout specifications for the 3 sizes
 │   ├── diagram-guide.md      # Diagram type matching and drawing guide
@@ -121,7 +121,7 @@ Onepager 是一个 Agent Skill，能够将用户提供的文字、Markdown 或 P
 ### 核心特性
 
 - **多尺寸支持**：纵向长图、横向宽图 (16:9)、正方形 (1:1)
-- **四种设计风格**：科技极客、现代商务、清新自然、新拟态质感
+- **六种设计风格**：科技极客、现代商务、清新自然、新拟态质感、现代孟菲斯、现代软UI
 - **三级信息密度**：低/中/高密度，自动改写内容匹配版式
 - **智能图表匹配**：根据内容逻辑自动选择流程图、结构图、架构图等
 - **中文字体优化**：根据设计风格匹配最佳中文字体方案
@@ -168,7 +168,7 @@ onepager/
 │   ├── capture.py            # Playwright HTML→PNG 截图脚本
 │   └── install_deps.sh       # 依赖安装辅助脚本
 ├── references/
-│   ├── design-styles.md      # 四种设计风格的完整视觉规范
+│   ├── design-styles.md      # 六种设计风格的完整视觉规范
 │   ├── typography.md         # 中文字体方案与排版参数
 │   ├── layout-specs.md       # 三种尺寸的版式规范
 │   ├── diagram-guide.md      # 图表类型匹配与绘制指南

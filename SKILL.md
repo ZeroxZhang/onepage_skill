@@ -3,7 +3,7 @@ name: onepager
 description: >-
   Generate beautiful OnePage infographic posters and visual summary images from
   user-provided content (text, Markdown, PDF). Supports multiple sizes (portrait,
-  landscape, square), four design styles, three information density levels, Chinese
+  landscape, square), six design styles, three information density levels, Chinese
   typography matching, and auto-matched visual diagrams (flowcharts, tree diagrams,
   architecture diagrams, matrices, radar/pie charts). Use this skill whenever the
   user asks to create a one-page summary, product introduction poster, strategy
@@ -49,6 +49,8 @@ description: >-
 - `B2` 🏛️ 现代商务 — 高级灰白 + 低饱和度渐变 + 微投影
 - `B3` 🍃 清新自然 — 明亮色彩 + 弥散光影 + 毛玻璃
 - `B4` 🎨 新拟态质感 — 柔和光影 + 立体凸凹 + 卡片感
+- `B5` 💥 现代孟菲斯 — 撞色几何 + 复古波普元素 + 做旧质感
+- `B6` 🫧 现代软 UI — 柔和立体 + 玻璃悬浮 + 极简科技
 
 **C. 信息密度**
 - `C1` 🟢 低密度 — 大留白，金句提炼，视觉优先
