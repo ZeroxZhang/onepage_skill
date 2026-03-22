@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-OnePage Generator — HTML to PNG capture script.
+Onepager — HTML to PNG capture script.
 
 Uses Playwright to render an HTML file and capture it as a high-quality PNG image.
 Supports fixed dimensions and auto-height (full-page) modes.

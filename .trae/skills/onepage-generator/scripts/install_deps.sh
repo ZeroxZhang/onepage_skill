@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# OnePage Generator — Dependency installation helper
+# Onepager — Dependency installation helper
 # Installs Playwright (Python) and Chromium browser for HTML-to-PNG capture.
 
 set -e
 
-echo "=== OnePage Generator: Installing dependencies ==="
+echo "=== Onepager: Installing dependencies ==="
 
 # Check Python
 if ! command -v python3 &> /dev/null; then

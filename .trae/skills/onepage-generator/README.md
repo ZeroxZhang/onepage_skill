@@ -4,15 +4,15 @@
 
 ---
 
-<h1 id="english">OnePage Generator</h1>
+<h1 id="english">Onepager</h1>
 
 > A Claude Agent Skill for converting text content into high-quality OnePage infographics.
 
-![OnePage Generator Demo](./readme_onepage.png)
+![Onepager Demo](./readme_onepage.png)
 
 ## Overview
 
-OnePage Generator is a Claude Agent Skill that transforms your provided text, Markdown, or PDF content into beautiful OnePage infographics (single-page visual posters) through a progressive interactive workflow.
+Onepager is a Claude Agent Skill that transforms your provided text, Markdown, or PDF content into beautiful OnePage infographics (single-page visual posters) through a progressive interactive workflow.
 
 ### Use Cases
 
@@ -35,7 +35,7 @@ OnePage Generator is a Claude Agent Skill that transforms your provided text, Ma
 
 ### Method 1: Upload on Claude.ai
 
-1. Compress the `onepage-generator/` folder into a ZIP file.
+1. Compress the `onepager/` folder into a ZIP file.
 2. Open Claude.ai → Settings → Customization → Skills.
 3. Click "+" → Upload the ZIP file.
 
@@ -44,13 +44,13 @@ OnePage Generator is a Claude Agent Skill that transforms your provided text, Ma
 Copy the folder to your project's `.claude/skills/` or `.trae/skills/` directory:
 
 ```bash
-cp -r onepage-generator/ .trae/skills/onepage-generator/
+cp -r onepager/ .trae/skills/onepager/
 ```
 
 ### Method 3: Global Installation
 
 ```bash
-cp -r onepage-generator/ ~/.trae/skills/onepage-generator/
+cp -r onepager/ ~/.trae/skills/onepager/
 ```
 
 ## Usage
@@ -61,12 +61,12 @@ Simply describe your request to the AI to trigger it automatically, for example:
 - "Generate a OnePage from this Markdown"
 - "Turn this text into a long image suitable for mobile reading"
 
-Or use the slash command to call it explicitly: `/onepage-generator`
+Or use the slash command to call it explicitly: `/onepager`
 
 ## File Structure
 
 ```text
-onepage-generator/
+onepager/
 ├── SKILL.md                  # Core instructions (Entry point for the Agent)
 ├── scripts/
 │   ├── capture.py            # Playwright HTML→PNG screenshot script
@@ -100,15 +100,15 @@ Apache License 2.0
 
 ---
 
-<h1 id="简体中文">OnePage Generator</h1>
+<h1 id="简体中文">Onepager</h1>
 
 > 将文字内容转化为高品质 OnePage 介绍图的 Agent Skill。
 
-![OnePage Generator Demo](./readme_onepage.png)
+![Onepager Demo](./readme_onepage.png)
 
 ## 功能概述
 
-OnePage Generator 是一个 Agent Skill，能够将用户提供的文字、Markdown 或 PDF 内容，通过渐进式交互流程，转化为精美的 OnePage 信息图（单页可视化海报）。
+Onepager 是一个 Agent Skill，能够将用户提供的文字、Markdown 或 PDF 内容，通过渐进式交互流程，转化为精美的 OnePage 信息图（单页可视化海报）。
 
 ### 适用场景
 
@@ -131,7 +131,7 @@ OnePage Generator 是一个 Agent Skill，能够将用户提供的文字、Markd
 
 ### 方式一：Claude.ai 上传
 
-1. 将 `onepage-generator/` 文件夹压缩为 ZIP 文件
+1. 将 `onepager/` 文件夹压缩为 ZIP 文件
 2. 打开 Claude.ai → 设置 → 自定义 → Skills
 3. 点击 "+" → 上传 ZIP 文件
 
@@ -140,13 +140,13 @@ OnePage Generator 是一个 Agent Skill，能够将用户提供的文字、Markd
 将文件夹复制到项目的 `.claude/skills/` 或 `.trae/skills/` 目录下：
 
 ```bash
-cp -r onepage-generator/ .trae/skills/onepage-generator/
+cp -r onepager/ .trae/skills/onepager/
 ```
 
 ### 方式三：个人全局安装
 
 ```bash
-cp -r onepage-generator/ ~/.trae/skills/onepage-generator/
+cp -r onepager/ ~/.trae/skills/onepager/
 ```
 
 ## 使用方式
@@ -157,12 +157,12 @@ cp -r onepage-generator/ ~/.trae/skills/onepage-generator/
 - "用这份 Markdown 生成一个 OnePage"
 - "把这段文字做成一张适合手机阅读的长图"
 
-或使用特定的唤醒词/斜杠命令显式调用：`/onepage-generator`
+或使用特定的唤醒词/斜杠命令显式调用：`/onepager`
 
 ## 文件结构说明
 
 ```text
-onepage-generator/
+onepager/
 ├── SKILL.md                  # 核心指令（Agent 读取的入口）
 ├── scripts/
 │   ├── capture.py            # Playwright HTML→PNG 截图脚本

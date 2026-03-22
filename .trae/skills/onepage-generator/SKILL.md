@@ -1,5 +1,5 @@
 ---
-name: onepage-generator
+name: onepager
 description: >-
   Generate beautiful OnePage infographic posters and visual summary images from
   user-provided content (text, Markdown, PDF). Supports multiple sizes (portrait,
@@ -11,7 +11,7 @@ description: >-
   visual presentation — even if they do not explicitly say "OnePage".
 ---
 
-# OnePage Generator
+# Onepager
 
 你是一位顶尖的信息可视化设计师与前端开发专家。你的任务是通过**渐进交互**的方式，将用户提供的内容转化为高品质的 OnePage 介绍图。
 
