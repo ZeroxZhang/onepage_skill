@@ -69,6 +69,51 @@
 - 字号可比纵向长图略小 1-2px
 - 模块间距：24-32px
 
+### ⚠️ 固定高度布局规则（A2 必读）
+
+A2 的画布高度是 **固定的 1080px**，与 A1（高度自适应）有本质区别。生成 CSS 时必须遵循以下规则，防止内容与容器之间出现不可控的空白：
+
+1. **先计算垂直空间预算，再写 CSS**：
+   - 可用高度 = 1080px - 上下 padding (96px) = **984px**
+   - 将 984px 按 header / 内容行1 / 内容行2 / ... / footer 分配具体像素值
+   - 将计算结果写入 `grid-template-rows`（如 `80px 1fr 120px 1fr 40px`）
+   - 确保各行高度之和 ≈ 可用高度的 **90-100%**
+
+2. **Grid 容器必须显式声明 `grid-template-rows`**：
+   - 为每一行分配明确的高度比例或固定值
+   - **禁止**依赖 grid 默认的 `stretch` 行为自动分配行高
+   - 同时必须设置 `align-content: start`，确保内容从顶部开始排列
+   ```css
+   /* ✅ 正确示例 */
+   .main-content {
+       display: grid;
+       grid-template-columns: 1fr 1fr 1fr;
+       grid-template-rows: 280px 100px 280px;  /* 明确的行高 */
+       align-content: start;
+       gap: 16px;
+   }
+   
+   /* ❌ 错误示例 — 会导致大面积空白 */
+   .main-content {
+       display: grid;
+       grid-template-columns: 1fr 1fr 1fr;
+       /* 未声明 grid-template-rows，默认 stretch 拉伸 */
+       flex: 1;  /* 危险：撑满剩余空间后行会被过度拉高 */
+   }
+   ```
+
+3. **禁止使用 `flex: 1` 撑满剩余空间**（除非配合明确的子元素高度约束）：
+   - 在固定高度容器中，`flex: 1` 会让某个区域获得远超内容的高度
+   - Grid/Flex 子元素在高度远小于容器时，会产生大面积不可控空白
+
+4. **Flex 纵向容器必须使用 `justify-content` 控制分布方式**：
+   - 推荐 `justify-content: flex-start` 或 `space-between`
+   - **禁止**使用默认值（等效于 `stretch`/`normal`），否则内容可能被推到中部或底部
+
+5. **内容总高度应填满画布的 85-95%**：
+   - 如果内容不足以填满，应通过增大 padding、扩大图表区域、增加装饰元素等方式补足
+   - 绝不能让布局引擎自动分配空白
+
 ---
 
 ## A3: 正方形 (Square / Social Media)
@@ -99,4 +144,12 @@
 - 建议使用 2×2 或类似的网格布局
 - 图表需要缩放至适合单个网格格子
 - 字号需适当缩小，但确保可读性（正文不小于 14px）
-```
+
+### ⚠️ 固定高度布局规则（A3 必读）
+
+A3 与 A2 一样是固定高度画布（1080×1080px），**必须遵循与 A2 相同的固定高度布局规则**（见上方 A2 章节的「固定高度布局规则」）。
+
+关键差异：
+- 可用高度 = 1080px - 上下 padding (96px) = **984px**
+- 正方形空间更紧张，垂直空间预算分配需要更精细
+- 建议使用 2×2 Grid 并显式声明 `grid-template-rows`，每行约 400-450px

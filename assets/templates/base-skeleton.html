@@ -43,10 +43,18 @@
         /* ============================================
            PAGE CONTAINER
            [SIZE]: Adjust width/height per layout-specs.md
+
+           ⚠️ A2/A3 固定高度画布注意事项：
+           - 将 min-height 改为 height（固定值）
+           - 不要在子元素上用 flex: 1 撑满剩余空间
+           - Grid 布局必须声明 grid-template-rows
+           - Grid 布局必须设置 align-content: start
+           - 先计算垂直空间预算（画布高度 - padding），
+             再按 header/内容行/footer 分配具体像素值
            ============================================ */
         .page {
             width: 800px;            /* A1: 800px | A2: 1920px | A3: 1080px */
-            min-height: 100vh;       /* A1: auto  | A2: 1080px | A3: 1080px */
+            min-height: 100vh;       /* A1: auto  | A2: height:1080px | A3: height:1080px */
             margin: 0 auto;
             padding: var(--page-padding);
             background: var(--color-bg);
@@ -142,16 +150,23 @@
 
         /* ============================================
            GRID LAYOUTS
+
+           ⚠️ A2/A3 固定高度画布：
+           必须为 grid 声明 grid-template-rows，
+           并设置 align-content: start。
+           禁止依赖默认 stretch 行为。
            ============================================ */
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
+            /* [A2/A3]: 必须添加 grid-template-rows 和 align-content: start */
             gap: 16px;
         }
 
         .grid-3 {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
+            /* [A2/A3]: 必须添加 grid-template-rows 和 align-content: start */
             gap: 16px;
         }
 
