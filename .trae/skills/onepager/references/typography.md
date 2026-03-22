@@ -76,6 +76,37 @@
 - 正文字重：400-500
 - 可在关键数字处使用更大的字重形成视觉焦点
 
+### B5 现代孟菲斯风
+
+需要**极强视觉冲击力**的字体，主标题可以夸张，正文保持清晰。
+
+```css
+:root {
+  /* 大标题可使用特殊的展示字体，或极粗的黑体 */
+  --font-heading: 'ZCOOL KuaiLe', 'Noto Sans SC', 'PingFang SC', sans-serif;
+  --font-body: 'Noto Sans SC', 'PingFang SC', sans-serif;
+}
+```
+
+- 主标题：字重 900+ (Black/Heavy)，字号可非常夸张。
+- 副标题/重点数据：字重 800-900，可增加描边效果 (`-webkit-text-stroke`)。
+- 正文：字重 400-500，保证阅读性。
+
+### B6 现代软 UI 风
+
+强调**轻盈、通透与现代感**。
+
+```css
+:root {
+  --font-heading: 'Noto Sans SC', 'PingFang SC', sans-serif;
+  --font-body: 'Noto Sans SC', 'PingFang SC', sans-serif;
+}
+```
+
+- 标题字重：600-800，干净利落。
+- 正文字重：300-400，颜色使用深灰/中灰以降低对比度，体现“软”感。
+- 整体字间距可稍微放宽（`letter-spacing: 0.03em`）。
+
 ---
 
 ## 中文排版核心参数

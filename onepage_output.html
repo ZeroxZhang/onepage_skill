@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onepager - Agent Skill for OnePage Infographics</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+    </style>
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-bg: #f8f9fa;
+            --color-surface: #ffffff;
+            --color-primary: #2563eb;
+            --color-accent: #7c3aed;
+            --color-text: #334155;
+            --color-text-secondary: #94a3b8;
+            --color-border: #e2e8f0;
+            --color-border-light: #f1f5f9;
+            --font-heading: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+            --font-body: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+            --card-radius: 8px;
+        }
+
+        body {
+            background: #e2e8f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page {
+            width: 1920px;
+            height: 1080px;
+            background: var(--color-bg);
+            font-family: var(--font-body);
+            color: var(--color-text);
+            font-size: 14px;
+            line-height: 1.8;
+            letter-spacing: 0.02em;
+            position: relative;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            grid-template-rows: 1fr;
+        }
+
+        /* ============================================
+           DECORATIVE BACKGROUND ELEMENTS
+           ============================================ */
+        .page::before {
+            content: '';
+            position: absolute;
+            top: -120px;
+            right: -80px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(37,99,235,0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .page::after {
+            content: '';
+            position: absolute;
+            bottom: -150px;
+            left: 200px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(124,58,237,0.04) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .page > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ============================================
+           LEFT PANEL - TITLE AREA
+           ============================================ */
+        .left-panel {
+            background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+            padding: 48px 36px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .left-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #2563eb, #7c3aed);
+        }
+
+        .left-panel::after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            left: -80px;
+            width: 260px;
+            height: 260px;
+            background: radial-gradient(circle, rgba(37,99,235,0.12) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .left-panel .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 36px;
+        }
+
+        .left-panel .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .left-panel .logo-icon svg {
+            width: 22px;
+            height: 22px;
+            fill: white;
+        }
+
+        .left-panel .logo-text {
+            font-family: var(--font-heading);
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 0.04em;
+        }
+
+        .left-panel h1 {
+            font-family: var(--font-heading);
+            font-size: 38px;
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .left-panel .tagline {
+            font-size: 15px;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .left-panel .highlight-box {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .left-panel .highlight-box .label {
+            font-size: 11px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+
+        .left-panel .highlight-box .items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .left-panel .highlight-box .tag {
+            background: rgba(37,99,235,0.2);
+            color: rgba(255,255,255,0.85);
+            border: 1px solid rgba(37,99,235,0.3);
+            border-radius: 4px;
+            padding: 3px 10px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .left-panel .meta-info {
+            font-size: 12px;
+            color: rgba(255,255,255,0.35);
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-top: 16px;
+        }
+
+        .left-panel .meta-info span {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* ============================================
+           RIGHT PANEL - CONTENT AREA
+           ============================================ */
+        .right-panel {
+            padding: 36px 44px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            overflow: hidden;
+        }
+
+        /* Section title bar */
+        .section-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .section-bar .icon-circle {
+            width: 26px;
+            height: 26px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .section-bar .icon-circle svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .section-bar h2 {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--color-text);
+        }
+
+        /* Card component */
+        .card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border-light);
+            border-radius: var(--card-radius);
+            padding: 16px 18px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .card h3 {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 6px;
+        }
+
+        .card p, .card li {
+            font-size: 12.5px;
+            line-height: 1.7;
+            color: #475569;
+        }
+
+        .card ul {
+            padding-left: 16px;
+            margin: 0;
+        }
+
+        .card ul li {
+            margin-bottom: 2px;
+        }
+
+        /* Top row: Overview + Features */
+        .top-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* Middle row: Installation + Usage + Dependencies */
+        .middle-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* Bottom row: File structure diagram */
+        .bottom-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        /* Feature grid inside card */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 8px 10px;
+            background: #f8fafc;
+            border-radius: 6px;
+            border: 1px solid #f1f5f9;
+        }
+
+        .feature-item .f-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+
+        .feature-item .f-text {
+            font-size: 12px;
+            line-height: 1.5;
+            color: #475569;
+        }
+
+        .feature-item .f-text strong {
+            display: block;
+            font-size: 12.5px;
+            color: var(--color-text);
+            margin-bottom: 1px;
+        }
+
+        /* Installation steps */
+        .install-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .install-method {
+            padding: 10px 12px;
+            background: #f8fafc;
+            border-radius: 6px;
+            border-left: 3px solid var(--color-primary);
+        }
+
+        .install-method .method-name {
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 4px;
+        }
+
+        .install-method .method-desc {
+            font-size: 11.5px;
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .install-method code {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            background: #e2e8f0;
+            padding: 1px 5px;
+            border-radius: 3px;
+            color: #334155;
+        }
+
+        /* Usage examples */
+        .usage-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .usage-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            background: #f8fafc;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #475569;
+        }
+
+        .usage-item .usage-icon {
+            width: 22px;
+            height: 22px;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .usage-item .usage-icon svg {
+            width: 12px;
+            height: 12px;
+            fill: white;
+        }
+
+        /* Deps card */
+        .dep-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .dep-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            background: #f8fafc;
+            border-radius: 6px;
+        }
+
+        .dep-item .dep-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .dep-item span {
+            font-size: 12px;
+            color: #475569;
+        }
+
+        /* File structure tree */
+        .file-tree-container {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .file-tree {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            line-height: 1.6;
+            color: #475569;
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 14px 18px;
+            border: 1px solid #f1f5f9;
+            flex: 1;
+            white-space: pre;
+        }
+
+        .file-tree .dir { color: #2563eb; font-weight: 600; }
+        .file-tree .file { color: #475569; }
+        .file-tree .comment { color: #94a3b8; }
+
+        /* Architecture diagram */
+        .arch-diagram {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .arch-layer {
+            border-radius: 6px;
+            padding: 10px 16px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .arch-top {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+        }
+
+        .arch-middle {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+        }
+
+        .arch-pillar {
+            background: #e0e7ff;
+            color: #3730a3;
+            border-radius: 6px;
+            padding: 8px 10px;
+            text-align: center;
+            font-size: 11px;
+            font-weight: 600;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .arch-pillar .pillar-sub {
+            font-weight: 400;
+            font-size: 10.5px;
+            color: #6366f1;
+        }
+
+        .arch-bottom {
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        .arch-label {
+            font-size: 10px;
+            color: var(--color-text-secondary);
+            text-align: center;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        /* Accent colors for icons */
+        .bg-blue { background: #dbeafe; }
+        .bg-purple { background: #ede9fe; }
+        .bg-green { background: #dcfce7; }
+        .bg-amber { background: #fef3c7; }
+        .bg-rose { background: #ffe4e6; }
+        .bg-cyan { background: #cffafe; }
+
+        .text-blue { color: #2563eb; }
+        .text-purple { color: #7c3aed; }
+        .text-green { color: #16a34a; }
+        .text-amber { color: #d97706; }
+        .text-rose { color: #e11d48; }
+        .text-cyan { color: #0891b2; }
+
+    </style>
+</head>
+<body>
+    <div class="page">
+
+        <!-- LEFT PANEL -->
+        <div class="left-panel">
+            <div>
+                <div class="logo-area">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="3" width="18" height="18" rx="3" fill="white" opacity="0.9"/>
+                            <path d="M7 8h10M7 12h7M7 16h10" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">Onepager</span>
+                </div>
+
+                <h1>Agent Skill<br>for OnePage<br>Infographics</h1>
+
+                <p class="tagline">
+                    Onepager 是一个 Agent Skill，能够将用户提供的文字、Markdown 或 PDF 内容，通过渐进式交互流程，转化为精美的 OnePage 信息图（单页可视化海报）。
+                </p>
+
+                <div class="highlight-box">
+                    <div class="label">Applicable Scenarios</div>
+                    <div class="items">
+                        <span class="tag">产品功能介绍</span>
+                        <span class="tag">策略/方法论展示</span>
+                        <span class="tag">信息图表制作</span>
+                        <span class="tag">数据可视化概览</span>
+                        <span class="tag">一页纸汇报</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="meta-info">
+                <span>License: Apache License 2.0</span>
+                <span>Compatibility: Claude.ai / Claude Code / Trae</span>
+            </div>
+        </div>
+
+        <!-- RIGHT PANEL -->
+        <div class="right-panel">
+
+            <!-- ROW 1: Overview + Core Features -->
+            <div class="top-row">
+                <!-- Overview -->
+                <div>
+                    <div class="section-bar">
+                        <div class="icon-circle bg-blue">
+                            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                        <h2>功能概述</h2>
+                    </div>
+                    <div class="card">
+                        <p>Onepager 是一款面向 AI Agent 的信息可视化技能插件。它接收文字、Markdown 或 PDF 内容作为输入，通过 <strong>5 阶段渐进式交互流程</strong>（内容分析 → 配置选择 → 内容重构 → HTML 生成 → 截图交付），自动生成像素级精美的单页信息图。</p>
+                        <p style="margin-top:8px;">整个过程无需用户编写任何代码，只需选择尺寸、风格和密度三个维度的配置，即可获得专业级的可视化输出。支持 Claude.ai 上传、项目集成和全局安装三种部署方式。</p>
+                    </div>
+                </div>
+
+                <!-- Core Features -->
+                <div>
+                    <div class="section-bar">
+                        <div class="icon-circle bg-purple">
+                            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                        <h2>核心特性</h2>
+                    </div>
+                    <div class="card">
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <div class="f-icon bg-blue"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="4" y="2" width="16" height="20" rx="2" stroke="#2563eb" stroke-width="1.5"/><path d="M9 10h6M9 14h4" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                                <div class="f-text"><strong>多尺寸支持</strong>纵向长图 / 横向 16:9 / 正方形 1:1</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="f-icon bg-purple"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#7c3aed" stroke-width="1.5"/><path d="M12 3a9 9 0 0 1 0 18" fill="#7c3aed" opacity="0.2"/></svg></div>
+                                <div class="f-text"><strong>四种设计风格</strong>科技极客 / 现代商务 / 清新自然 / 新拟态</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="f-icon bg-green"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h10M4 18h16" stroke="#16a34a" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                                <div class="f-text"><strong>三级信息密度</strong>低/中/高密度，自动改写内容匹配版式</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="f-icon bg-amber"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M3 3v18h18" stroke="#d97706" stroke-width="1.5" stroke-linecap="round"/><path d="M7 14l4-4 4 4 5-5" stroke="#d97706" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                                <div class="f-text"><strong>智能图表匹配</strong>根据内容逻辑自动选择图表类型</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="f-icon bg-rose"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 7V4h16v3M9 20h6M12 4v16" stroke="#e11d48" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                                <div class="f-text"><strong>中文字体优化</strong>根据风格匹配最佳中文字体方案</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="f-icon bg-cyan"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="#0891b2" stroke-width="1.5"/><path d="M3 9h18M9 3v18" stroke="#0891b2" stroke-width="1.5"/></svg></div>
+                                <div class="f-text"><strong>HTML → PNG</strong>自带 Playwright 截图脚本转高清图</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROW 2: Installation + Usage + Dependencies -->
+            <div class="middle-row">
+                <!-- Installation -->
+                <div>
+                    <div class="section-bar">
+                        <div class="icon-circle bg-green">
+                            <svg viewBox="0 0 24 24" fill="none"><path d="M12 15V3M12 15l-4-4M12 15l4-4M2 17l.621 2.485A2 2 0 0 0 4.561 21h14.878a2 2 0 0 0 1.94-1.515L22 17" stroke="#16a34a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                        <h2>安装方式</h2>
+                    </div>
+                    <div class="card">
+                        <div class="install-methods">
+                            <div class="install-method">
+                                <div class="method-name">方式一：Claude.ai 上传</div>
+                                <div class="method-desc">将 <code>onepager/</code> 压缩为 ZIP → 设置 → 自定义 → Skills → 上传</div>
+                            </div>
+                            <div class="install-method">
+                                <div class="method-name">方式二：项目集成</div>
+                                <div class="method-desc">复制到项目目录下：<br><code>cp -r onepager/ .trae/skills/onepager/</code></div>
+                            </div>
+                            <div class="install-method">
+                                <div class="method-name">方式三：全局安装</div>
+                                <div class="method-desc">复制到个人配置目录：<br><code>cp -r onepager/ ~/.trae/skills/onepager/</code></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Usage -->
+                <div>
+                    <div class="section-bar">
+                        <div class="icon-circle bg-amber">
+                            <svg viewBox="0 0 24 24" fill="none"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M13.8 12H3" stroke="#d97706" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                        <h2>使用方式</h2>
+                    </div>
+                    <div class="card">
+                        <p style="font-size:12px;color:#64748b;margin-bottom:8px;">直接向 AI 描述需求即可自动触发：</p>
+                        <div class="usage-list">
+                            <div class="usage-item">
+                                <div class="usage-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+                                "帮我把这段产品介绍做成一张信息图"
+                            </div>
+                            <div class="usage-item">
+                                <div class="usage-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></div>
+                                "用这份 Markdown 生成一个 OnePage"
+                            </div>
+                            <div class="usage-item">
+                                <div class="usage-icon"><svg viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/></svg></div>
+                                "把这段文字做成适合手机阅读的长图"
+                            </div>
+                            <div class="usage-item">
+                                <div class="usage-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5"/></svg></div>
+                                斜杠命令：<strong style="color:#2563eb">/onepager</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dependencies -->
+                <div>
+                    <div class="section-bar">
+                        <div class="icon-circle bg-rose">
+                            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM12 6v6l4 2" stroke="#e11d48" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                        <h2>依赖 & 兼容性</h2>
+                    </div>
+                    <div class="card">
+                        <h3 style="margin-bottom:8px;">截图功能依赖（可选）</h3>
+                        <div class="dep-list">
+                            <div class="dep-item">
+                                <div class="dep-dot" style="background:#facc15;"></div>
+                                <span><strong>Python 3.8+</strong> — 运行截图脚本</span>
+                            </div>
+                            <div class="dep-item">
+                                <div class="dep-dot" style="background:#2563eb;"></div>
+                                <span><strong>Playwright</strong> — <code style="font-family:var(--font-mono);font-size:11px;background:#e2e8f0;padding:1px 4px;border-radius:3px;">pip install playwright</code></span>
+                            </div>
+                            <div class="dep-item">
+                                <div class="dep-dot" style="background:#16a34a;"></div>
+                                <span><strong>Chromium</strong> — <code style="font-family:var(--font-mono);font-size:11px;background:#e2e8f0;padding:1px 4px;border-radius:3px;">python -m playwright install chromium</code></span>
+                            </div>
+                        </div>
+                        <p style="margin-top:12px;font-size:11.5px;color:#94a3b8;padding:8px;background:#f8fafc;border-radius:6px;border-left:3px solid #e2e8f0;">如果运行环境不支持截图工具，Skill 将直接交付 HTML 文件，Agent 会在需要时自动安装依赖。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROW 3: File Structure + Architecture -->
+            <div class="bottom-row">
+                <div>
+                    <div class="section-bar">
+                        <div class="icon-circle bg-cyan">
+                            <svg viewBox="0 0 24 24" fill="none"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" stroke="#0891b2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                        <h2>项目结构 & 工作原理</h2>
+                    </div>
+                    <div class="card" style="padding:14px 18px;">
+                        <div class="file-tree-container">
+                            <div class="file-tree"><span class="dir">onepager/</span>
+├── <span class="file">SKILL.md</span>              <span class="comment"># 核心指令入口</span>
+├── <span class="dir">scripts/</span>
+│   ├── <span class="file">capture.py</span>        <span class="comment"># HTML→PNG 截图</span>
+│   └── <span class="file">install_deps.sh</span>   <span class="comment"># 依赖安装脚本</span>
+├── <span class="dir">references/</span>
+│   ├── <span class="file">design-styles.md</span>  <span class="comment"># 4 种风格视觉规范</span>
+│   ├── <span class="file">typography.md</span>     <span class="comment"># 字体方案</span>
+│   ├── <span class="file">layout-specs.md</span>   <span class="comment"># 3 种尺寸版式</span>
+│   ├── <span class="file">diagram-guide.md</span>  <span class="comment"># 图表匹配指南</span>
+│   └── <span class="file">density-guide.md</span>  <span class="comment"># 密度改写规则</span>
+├── <span class="dir">assets/templates/</span>
+│   └── <span class="file">base-skeleton.html</span> <span class="comment"># HTML 基础骨架</span>
+├── <span class="file">LICENSE.txt</span>
+└── <span class="file">README.md</span></div>
+
+                            <div class="arch-diagram">
+                                <div class="arch-label">ARCHITECTURE</div>
+                                <div class="arch-layer arch-top">SKILL.md — Agent 交互入口与流程控制</div>
+                                <div class="arch-middle">
+                                    <div class="arch-pillar">
+                                        references/
+                                        <span class="pillar-sub">设计规范 & 排版参数</span>
+                                    </div>
+                                    <div class="arch-pillar">
+                                        assets/
+                                        <span class="pillar-sub">HTML 模板骨架</span>
+                                    </div>
+                                    <div class="arch-pillar">
+                                        scripts/
+                                        <span class="pillar-sub">截图 & 依赖安装</span>
+                                    </div>
+                                </div>
+                                <div class="arch-layer arch-bottom">输出：HTML 单文件 → Playwright → 高清 PNG 图片</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
