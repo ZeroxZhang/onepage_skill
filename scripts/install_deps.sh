@@ -12,6 +12,11 @@ if ! command -v python3 &> /dev/null; then
     exit 1
 fi
 
+if python3 -c "import playwright" &> /dev/null; then
+    echo "Playwright is already installed, skipping installation."
+    exit 0
+fi
+
 echo "[1/2] Installing Playwright Python package..."
 pip install playwright 2>/dev/null || pip3 install playwright 2>/dev/null
 

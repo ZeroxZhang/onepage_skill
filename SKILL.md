@@ -173,7 +173,8 @@ python3 scripts/capture.py onepage_output.html --output onepage_output.png --wid
 A1 纵向长图：--width 800 --height auto
 A2 横向宽图：--width 1920 --height 1080
 A3 正方形：--width 1080 --height 1080
-如果 Playwright 未安装，先执行：bash scripts/install_deps.sh
+
+**注意**：在执行截图前，请先运行 `python3 -c "import playwright"` 检查环境。只有当报错未安装时，才执行 `bash scripts/install_deps.sh`。如果已安装，请直接执行截图命令，**绝对不要**重复安装。
 
 
 #### 5.3 交付 
