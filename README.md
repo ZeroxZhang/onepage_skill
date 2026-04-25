@@ -27,7 +27,10 @@ Onepager is a Claude Agent Skill that transforms your provided text, Markdown, o
 - **Multiple Sizes**: Vertical scroll (Mobile), Horizontal widescreen (16:9), Square (1:1)
 - **Six Design Styles**: Cyber/Tech, Modern Business, Fresh/Nature, Neumorphism/Clay, Modern Memphis, Modern Soft UI
 - **Three Information Densities**: Low/Medium/High density, automatically rewriting content to match the layout
+- **Content Intelligence**: Applies consulting-grade content principles (MECE, Pyramid, SCQA, So What, Quantification) to restructure content for maximum impact
+- **Type Differentiation**: Automatically detects and adapts to 5 content types (Product Intro, Product Manual, Solution Pitch, Operation Guide, Infographic) with type-specific restructuring
 - **Smart Diagram Matching**: Automatically selects flowcharts, structure diagrams, architecture diagrams, etc., based on content logic
+- **Visual Standards**: 8pt Grid system, 60-30-10 color rule, WCAG AA contrast, consistent icon styles
 - **Enhanced Layout Engine**: Automatically handles complex layouts, Flex/Grid adaptations, and alignment optimization
 - **Chinese Typography Optimization**: Matches the best Chinese font scheme based on the design style
 - **HTML → PNG Conversion**: Built-in Playwright screenshot script to automatically convert to high-resolution images
@@ -77,7 +80,9 @@ onepager/
 │   ├── typography.md         # Chinese font schemes and typography parameters
 │   ├── layout-specs.md       # Layout specifications for the 3 sizes
 │   ├── diagram-guide.md      # Diagram type matching and drawing guide
-│   └── density-guide.md      # Information density and content rewriting rules
+│   ├── density-guide.md      # Information density and content rewriting rules
+│   ├── type-differentiation.md # Differentiated guidelines for 5 content types
+│   └── visual-standards.md   # Cross-style universal visual standards
 ├── assets/
 │   └── templates/
 │       └── base-skeleton.html# HTML base skeleton template
@@ -124,7 +129,10 @@ Onepager 是一个 Agent Skill，能够将用户提供的文字、Markdown 或 P
 - **多尺寸支持**：纵向长图、横向宽图 (16:9)、正方形 (1:1)
 - **六种设计风格**：科技极客、现代商务、清新自然、新拟态质感、现代孟菲斯、现代软UI
 - **三级信息密度**：低/中/高密度，自动改写内容匹配版式
+- **内容智能**：运用咨询级内容原则（MECE、金字塔原理、SCQA、So What、量化优先）重构内容，最大化传达效果
+- **类型差异化**：自动识别并适配 5 种内容类型（产品介绍、产品说明、方案介绍、操作指南、信息图），按类型定制重构策略
 - **智能图表匹配**：根据内容逻辑自动选择流程图、结构图、架构图等
+- **视觉规范**：8pt Grid 对齐系统、60-30-10 色彩法则、WCAG AA 对比度、统一图标风格
 - **排版引擎强化**：自动处理复杂布局、Flex/Grid 适配、对齐优化
 - **中文字体优化**：根据设计风格匹配最佳中文字体方案
 - **HTML → PNG 转换**：自带 Playwright 截图脚本，自动转为高清图片
@@ -174,7 +182,9 @@ onepager/
 │   ├── typography.md         # 中文字体方案与排版参数
 │   ├── layout-specs.md       # 三种尺寸的版式规范
 │   ├── diagram-guide.md      # 图表类型匹配与绘制指南
-│   └── density-guide.md      # 信息密度与内容改写规则
+│   ├── density-guide.md      # 信息密度与内容改写规则
+│   ├── type-differentiation.md # 五种内容类型的差异化指南
+│   └── visual-standards.md   # 跨风格通用视觉规范
 ├── assets/
 │   └── templates/
 │       └── base-skeleton.html  # HTML 基础骨架模板

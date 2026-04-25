@@ -34,10 +34,21 @@
             --font-heading: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
             --font-body: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
 
-            /* [SPACING] */
+            /* [SPACING] — 8pt Grid rhythm */
             --page-padding: 48px;
             --section-gap: 40px;
             --card-radius: 12px;
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+
+            /* [COLOR BUDGET] — 60-30-10 mapping */
+            --color-primary-60: var(--color-bg);       /* 60% — background */
+            --color-secondary-30: var(--color-surface); /* 30% — surfaces/cards */
+            --color-accent-10: var(--color-primary);    /* 10% — accent/CTA */
         }
 
         /* ============================================
@@ -204,10 +215,10 @@
 </head>
 <body>
     <div class="page">
-        <!-- [HEADER] -->
+        <!-- HEADER: ~15% of canvas height — title + subtitle + value proposition -->
         <div class="header">
-            <h1><!-- [主标题] --></h1>
-            <p class="subtitle"><!-- [副标题/摘要] --></p>
+            <h1><!-- [主标题/核心论点] --></h1>
+            <p class="subtitle"><!-- [副标题/价值主张一句话] --></p>
         </div>
 
         <!-- [CONTENT SECTIONS]: Repeat as needed -->
@@ -224,9 +235,10 @@
             <!-- [SVG/CSS 图表代码] -->
         </div>
 
-        <!-- [FOOTER] -->
+        <!-- FOOTER: ~15% of canvas height — CTA + trust signals + contact -->
         <div class="footer">
-            <!-- [来源/署名/日期] -->
+            <div class="cta"><!-- [明确、单一、可执行的行动号召] --></div>
+            <div class="trust-signals"><!-- [信任背书：数据/客户/认证] --></div>
         </div>
     </div>
 </body>
