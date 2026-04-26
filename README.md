@@ -25,7 +25,7 @@ Onepager is a Claude Agent Skill that transforms your provided text, Markdown, o
 ### Core Features
 
 - **Multiple Sizes**: Vertical scroll (Mobile), Horizontal widescreen (16:9), Square (1:1)
-- **Six Design Styles**: Cyber/Tech, Modern Business, Fresh/Nature, Neumorphism/Clay, Modern Memphis, Modern Soft UI
+- **Eight Design Styles**: Dark Editorial, Swiss Precision, Organic Nature, Constructivist Brutalism, Neo-Pop Editorial, Minimalist East, Data Journalism, Cyber Street
 - **Three Information Densities**: Low/Medium/High density, automatically rewriting content to match the layout
 - **Content Intelligence**: Applies consulting-grade content principles (MECE, Pyramid, SCQA, So What, Quantification) to restructure content for maximum impact
 - **Type Differentiation**: Automatically detects and adapts to 5 content types (Product Intro, Product Manual, Solution Pitch, Operation Guide, Infographic) with type-specific restructuring
@@ -33,6 +33,7 @@ Onepager is a Claude Agent Skill that transforms your provided text, Markdown, o
 - **Visual Standards**: 8pt Grid system, 60-30-10 color rule, WCAG AA contrast, consistent icon styles
 - **Enhanced Layout Engine**: Automatically handles complex layouts, Flex/Grid adaptations, and alignment optimization
 - **Chinese Typography Optimization**: Matches the best Chinese font scheme based on the design style
+- **Automated Quality Checks**: Built-in quality check script validates design compliance (color, typography, layout) before screenshot
 - **HTML → PNG Conversion**: Built-in Playwright screenshot script to automatically convert to high-resolution images
 
 ## Installation
@@ -74,9 +75,10 @@ onepager/
 ├── SKILL.md                  # Core instructions (Entry point for the Agent)
 ├── scripts/
 │   ├── capture.py            # Playwright HTML→PNG screenshot script
-│   └── install_deps.sh       # Dependency installation helper script
+│   ├── install_deps.sh       # Dependency installation helper script
+│   └── quality_check.py      # Automated design quality validation script
 ├── references/
-│   ├── design-styles.md      # Full visual specifications for the 6 design styles
+│   ├── design-styles.md      # Full visual specifications for the 8 design styles
 │   ├── typography.md         # Chinese font schemes and typography parameters
 │   ├── layout-specs.md       # Layout specifications for the 3 sizes
 │   ├── diagram-guide.md      # Diagram type matching and drawing guide
@@ -127,7 +129,7 @@ Onepager 是一个 Agent Skill，能够将用户提供的文字、Markdown 或 P
 ### 核心特性
 
 - **多尺寸支持**：纵向长图、横向宽图 (16:9)、正方形 (1:1)
-- **六种设计风格**：科技极客、现代商务、清新自然、新拟态质感、现代孟菲斯、现代软UI
+- **八种设计风格**：暗夜编辑、瑞士精密、有机自然、建筑粗野、新波普编辑、极简东方、数据新闻、赛博街道
 - **三级信息密度**：低/中/高密度，自动改写内容匹配版式
 - **内容智能**：运用咨询级内容原则（MECE、金字塔原理、SCQA、So What、量化优先）重构内容，最大化传达效果
 - **类型差异化**：自动识别并适配 5 种内容类型（产品介绍、产品说明、方案介绍、操作指南、信息图），按类型定制重构策略
@@ -135,6 +137,7 @@ Onepager 是一个 Agent Skill，能够将用户提供的文字、Markdown 或 P
 - **视觉规范**：8pt Grid 对齐系统、60-30-10 色彩法则、WCAG AA 对比度、统一图标风格
 - **排版引擎强化**：自动处理复杂布局、Flex/Grid 适配、对齐优化
 - **中文字体优化**：根据设计风格匹配最佳中文字体方案
+- **自动化质量检查**：内置质量检查脚本，在截图前自动校验设计合规性（配色、排版、布局）
 - **HTML → PNG 转换**：自带 Playwright 截图脚本，自动转为高清图片
 
 ## 安装方式
@@ -176,9 +179,10 @@ onepager/
 ├── SKILL.md                  # 核心指令（Agent 读取的入口）
 ├── scripts/
 │   ├── capture.py            # Playwright HTML→PNG 截图脚本
-│   └── install_deps.sh       # 依赖安装辅助脚本
+│   ├── install_deps.sh       # 依赖安装辅助脚本
+│   └── quality_check.py      # 自动化设计质量校验脚本
 ├── references/
-│   ├── design-styles.md      # 六种设计风格的完整视觉规范
+│   ├── design-styles.md      # 八种设计风格的完整视觉规范
 │   ├── typography.md         # 中文字体方案与排版参数
 │   ├── layout-specs.md       # 三种尺寸的版式规范
 │   ├── diagram-guide.md      # 图表类型匹配与绘制指南
