@@ -8,9 +8,30 @@
     <!-- [FONT_IMPORT]: Replace with style-matched @import from typography.md -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
     </style>
 
     <style>
+        /* ============================================
+           SVG ICON SYSTEM
+           All icons use 24x24 viewBox, stroke-based
+           Icons are referenced via <use href="#icon-name"/>
+           ============================================ */
+        .icon {
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+            vertical-align: middle;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .icon-sm { width: 16px; height: 16px; }
+        .icon-lg { width: 32px; height: 32px; }
+        .icon-fill { fill: currentColor; stroke: none; }
+
         /* ============================================
            BASE RESET & VARIABLES
            ============================================ */
@@ -24,8 +45,8 @@
             /* [COLORS]: Replace with values from design-styles.md */
             --color-bg: #ffffff;
             --color-surface: #f8f9fa;
-            --color-primary: #2563eb;
-            --color-accent: #7c3aed;
+            --color-primary: #18181b;
+            --color-accent: #dc2626;
             --color-text: #334155;
             --color-text-secondary: #94a3b8;
             --color-border: #e2e8f0;
@@ -33,11 +54,12 @@
             /* [TYPOGRAPHY] */
             --font-heading: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
             --font-body: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
 
             /* [SPACING] — 8pt Grid rhythm */
             --page-padding: 48px;
             --section-gap: 40px;
-            --card-radius: 12px;
+            --card-radius: 8px;
             --space-xs: 8px;
             --space-sm: 16px;
             --space-md: 24px;
@@ -48,7 +70,7 @@
             /* [COLOR BUDGET] — 60-30-10 mapping */
             --color-primary-60: var(--color-bg);       /* 60% — background */
             --color-secondary-30: var(--color-surface); /* 30% — surfaces/cards */
-            --color-accent-10: var(--color-primary);    /* 10% — accent/CTA */
+            --color-accent-10: var(--color-accent);    /* 10% — accent/CTA */
         }
 
         /* ============================================
@@ -89,8 +111,8 @@
             right: -100px;
             width: 400px;
             height: 400px;
-            /* Example: radial gradient blob */
-            background: radial-gradient(circle, rgba(37,99,235,0.08) 0%, transparent 70%);
+            /* Example: subtle radial gradient blob — KEEP SUBTLE */
+            background: radial-gradient(circle, rgba(0,0,0,0.03) 0%, transparent 70%);
             border-radius: 50%;
             pointer-events: none;
             z-index: 0;
@@ -127,6 +149,79 @@
         }
 
         /* ============================================
+           BIGNUMBER MODULE
+           Required on every OnePage. Visual impact first.
+           ============================================ */
+        .bignum-module {
+            margin-bottom: var(--section-gap);
+            padding: var(--space-lg) 0;
+        }
+
+        .bignum-grid {
+            display: grid;
+            gap: var(--space-lg);
+            /* Default: 3 columns for A2, override per size */
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .bignum-item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .bignum-value {
+            font-family: var(--font-mono);
+            font-size: 120px;        /* A2 default. A1: 72-96px, A3: 96-144px */
+            font-weight: 700;
+            color: var(--color-accent);
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+
+        .bignum-unit {
+            font-size: 40px;         /* ~33% of value size */
+            color: var(--color-text-secondary);
+            font-weight: 400;
+            vertical-align: super;
+            margin-left: 4px;
+        }
+
+        .bignum-label {
+            font-family: var(--font-body);
+            font-size: 16px;
+            color: var(--color-text-secondary);
+            margin-top: 12px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        .bignum-trend {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 8px;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .bignum-trend.up { color: #14b8a6; }
+        .bignum-trend.down { color: #f87171; }
+        .bignum-trend.neutral { color: var(--color-text-secondary); }
+
+        /* BigNumber decorative line — per style override */
+        .bignum-item::after {
+            content: '';
+            display: block;
+            width: 48px;
+            height: 4px;
+            background: var(--color-accent);
+            margin-top: 16px;
+            /* Styles override: border-radius, background, width, height */
+        }
+
+        /* ============================================
            CONTENT SECTIONS
            ============================================ */
         .section {
@@ -140,7 +235,7 @@
             color: var(--color-text);
             margin-bottom: 16px;
             padding-left: 12px;
-            border-left: 3px solid var(--color-primary);
+            border-left: 3px solid var(--color-accent);
         }
 
         .section-body {
@@ -181,6 +276,56 @@
             gap: 16px;
         }
 
+        .grid-4 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            /* [A2/A3]: 必须添加 grid-template-rows 和 align-content: start */
+            gap: 16px;
+        }
+
+        /* ============================================
+           EDITORIAL SPLIT LAYOUT
+           For asymmetric layouts (e.g., 1:2, 2:1)
+           ============================================ */
+        .editorial-split {
+            display: grid;
+            gap: var(--space-lg);
+        }
+        .editorial-split-1-2 {
+            grid-template-columns: 1fr 2fr;
+        }
+        .editorial-split-2-1 {
+            grid-template-columns: 2fr 1fr;
+        }
+        .editorial-split-1-3 {
+            grid-template-columns: 1fr 3fr;
+        }
+
+        /* ============================================
+           COLOR BLOCK
+           For solid color background blocks (B4/B5)
+           ============================================ */
+        .color-block {
+            padding: var(--space-lg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* ============================================
+           BOLD DIVIDER
+           For heavy horizontal rules (B2/B4)
+           ============================================ */
+        .hr-bold {
+            border: none;
+            height: 4px;
+            background: var(--color-primary);
+            margin: var(--space-lg) 0;
+        }
+        .hr-bold-thick {
+            height: 8px;
+        }
+
         /* ============================================
            DIAGRAM CONTAINERS
            [DIAGRAMS]: Populate per diagram-guide.md
@@ -214,11 +359,59 @@
     </style>
 </head>
 <body>
+    <!-- SVG Icon Definitions — Inline, zero external dependency -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <!-- Arrows -->
+        <symbol id="icon-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+        <symbol id="icon-arrow-down" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></symbol>
+        <symbol id="icon-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+        <symbol id="icon-arrow-left" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></symbol>
+        <symbol id="icon-trend-up" viewBox="0 0 24 24"><path d="M23 6l-9 9-5-5-8 8M23 6h-6M23 6v6"/></symbol>
+        <symbol id="icon-trend-down" viewBox="0 0 24 24"><path d="M23 18l-9-9-5 5-8-8M23 18h-6M23 18v-6"/></symbol>
+        <symbol id="icon-trend-flat" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+
+        <!-- Data / Chart -->
+        <symbol id="icon-bar-chart" viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></symbol>
+        <symbol id="icon-pie-chart" viewBox="0 0 24 24"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></symbol>
+        <symbol id="icon-activity" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></symbol>
+
+        <!-- Status -->
+        <symbol id="icon-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
+        <symbol id="icon-check-circle" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></symbol>
+        <symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></symbol>
+        <symbol id="icon-alert" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></symbol>
+
+        <!-- Function -->
+        <symbol id="icon-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+        <symbol id="icon-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></symbol>
+        <symbol id="icon-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></symbol>
+        <symbol id="icon-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+        <symbol id="icon-zap" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+        <symbol id="icon-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+    </svg>
+
     <div class="page">
         <!-- HEADER: ~15% of canvas height — title + subtitle + value proposition -->
         <div class="header">
             <h1><!-- [主标题/核心论点] --></h1>
             <p class="subtitle"><!-- [副标题/价值主张一句话] --></p>
+        </div>
+
+        <!-- BIGNUMBER MODULE: Required on every OnePage -->
+        <div class="bignum-module">
+            <div class="bignum-grid">
+                <div class="bignum-item">
+                    <div class="bignum-value">
+                        <!-- [数字] --><span class="bignum-unit"><!-- [单位] --></span>
+                    </div>
+                    <div class="bignum-label"><!-- [标签] --></div>
+                    <div class="bignum-trend up">
+                        <svg class="icon"><use href="#icon-trend-up"/></svg>
+                        <span><!-- [趋势值] --></span>
+                    </div>
+                </div>
+                <!-- [2-4 个数据项] -->
+            </div>
         </div>
 
         <!-- [CONTENT SECTIONS]: Repeat as needed -->
