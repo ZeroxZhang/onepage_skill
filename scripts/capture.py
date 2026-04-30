@@ -42,6 +42,7 @@ async def capture(input_path: str, output_path: str, width: int, height: str, sc
         print(f"ERROR: Input file not found: {abs_input}")
         sys.exit(1)
 
+    actual_height = "unknown"
     file_url = f"file://{abs_input}"
 
     async with async_playwright() as p:
@@ -63,6 +64,8 @@ async def capture(input_path: str, output_path: str, width: int, height: str, sc
                 full_page=True,
                 type="png",
             )
+            # Get actual page height for reporting
+            actual_height = await page.evaluate("document.documentElement.scrollHeight")
         else:
             # Fixed viewport screenshot
             h = int(height)
@@ -77,7 +80,10 @@ async def capture(input_path: str, output_path: str, width: int, height: str, sc
         await browser.close()
 
     print(f"OK: Screenshot saved to {output_path}")
-    print(f"    Dimensions: {width}px × {height}px (scale: {scale}x)")
+    if height == "auto":
+        print(f"    Dimensions: {width}px × {actual_height}px (scale: {scale}x, auto height)")
+    else:
+        print(f"    Dimensions: {width}px × {height}px (scale: {scale}x)")
 
 
 def main():

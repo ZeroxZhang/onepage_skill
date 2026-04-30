@@ -280,7 +280,7 @@ def check_contrast(bg_rgb, text_rgb):
     return (lighter + 0.05) / (darker + 0.05)
 
 
-def run_checks(html_path, style=None, size=None):
+def run_checks(html_path, style=None, size=None, no_bignum=False):
     """Run all quality checks on the HTML file."""
     path = Path(html_path)
     if not path.exists():
@@ -319,6 +319,8 @@ def run_checks(html_path, style=None, size=None):
     # ===== BIGNUMBER CHECK =====
     if checker.has_bignum:
         passed.append("[BIGNUMBER] BigNumber module present")
+    elif no_bignum:
+        passed.append("[BIGNUMBER] BigNumber module skipped (user chose E2 — no BigNumber)")
     else:
         errors.append("[BIGNUMBER] Missing BigNumber module (.bignum-* class not found). Every OnePage MUST include at least one BigNumber data display.")
 
@@ -343,10 +345,17 @@ def run_checks(html_path, style=None, size=None):
             warnings.append(f"  ... and {len(emojis_found) - 5} more")
 
     # ===== COLOR CHECKS =====
+    # B7 数据新闻 uses #1e3a5f (deep navy) and #9f1239 (rust red) as legitimate palette colors
+    b7_allowed_colors = {
+        (30, 58, 95),    # #1e3a5f
+        (159, 18, 57),   # #9f1239
+    }
     bp_colors = []
     for color in checker.color_values:
         rgb = parse_color(color)
         if rgb and is_blue_purple(*rgb):
+            if style and style.upper() == "B7" and rgb in b7_allowed_colors:
+                continue
             bp_colors.append(color)
 
     if not bp_colors:
@@ -474,7 +483,8 @@ def main():
     parser = argparse.ArgumentParser(description="Quality check for OnePage HTML files")
     parser.add_argument("input", help="Path to HTML file")
     parser.add_argument("--style", help="Design style (B1-B8)", default=None)
-    parser.add_argument("--size", help="Canvas size (A1/A2/A3)", default=None)
+    parser.add_argument("--size", help="Canvas size (A1/A2/A3/A4)", default=None)
+    parser.add_argument("--no-bignum", action="store_true", help="Skip BigNumber check (user chose E2 — no BigNumber)")
     args = parser.parse_args()
 
     print(f"\n{'='*60}")
@@ -486,7 +496,7 @@ def main():
         print(f"Size: {args.size}")
     print(f"{'='*60}\n")
 
-    errors, warnings, passed = run_checks(args.input, args.style, args.size)
+    errors, warnings, passed = run_checks(args.input, args.style, args.size, args.no_bignum)
 
     # Print results
     if errors:

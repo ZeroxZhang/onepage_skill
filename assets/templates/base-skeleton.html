@@ -86,8 +86,8 @@
              再按 header/内容行/footer 分配具体像素值
            ============================================ */
         .page {
-            width: 800px;            /* A1: 800px | A2: 1920px | A3: 1080px */
-            min-height: 100vh;       /* A1: auto  | A2: height:1080px | A3: height:1080px */
+            width: 800px;            /* A1: 800px | A2: 1920px | A3: 1080px | A4: 1080px */
+            min-height: 100vh;       /* A1: auto  | A2: height:1080px | A3: height:1080px | A4: height:1440px */
             margin: 0 auto;
             padding: var(--page-padding);
             background: var(--color-bg);
@@ -356,6 +356,13 @@
             font-size: 12px;
             color: var(--color-text-secondary);
         }
+
+        .signature {
+            margin-top: 12px;
+            font-size: 11px;
+            color: var(--color-text-secondary);
+            opacity: 0.7;
+        }
     </style>
 </head>
 <body>
@@ -397,7 +404,7 @@
             <p class="subtitle"><!-- [副标题/价值主张一句话] --></p>
         </div>
 
-        <!-- BIGNUMBER MODULE: Required on every OnePage -->
+        <!-- BIGNUMBER MODULE: Required if E1 selected; skip if E2 -->
         <div class="bignum-module">
             <div class="bignum-grid">
                 <div class="bignum-item">
@@ -432,6 +439,7 @@
         <div class="footer">
             <div class="cta"><!-- [明确、单一、可执行的行动号召] --></div>
             <div class="trust-signals"><!-- [信任背书：数据/客户/认证] --></div>
+            <div class="signature"><!-- [署名] · [日期] --></div>
         </div>
     </div>
 </body>
